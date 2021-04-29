@@ -53,8 +53,11 @@ fileList = f.readlines()
 
 i = 0
 evenList = []
-while i < len(fileList): 
-    if i % 2 == 0:
+while i < len(fileList):
+    # Using == 1 instead of == 0 because we're using 1-based numbering of lines
+    # but python uses 0-based numbering, so everything is off by one.
+    # Thus, even = odd. 
+    if i % 2 == 1:
         evenList.append(fileList[i])
         i = i + 1
     else:
@@ -64,7 +67,7 @@ f.close()
 
 evenFile = open("EvenFile_ini5.txt", "w")
 for i in evenList:
-    evenFile.write(str(i) + "\n")
+    evenFile.write(str(i))
 evenFile.close()
 
 
