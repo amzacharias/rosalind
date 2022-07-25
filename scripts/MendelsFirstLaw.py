@@ -17,20 +17,15 @@ will produce an individual possessing a dominant allele
 (and thus displaying the dominant phenotype). Assume that any two organisms can mate.
 """
 
-# Probablility that chromosome 1 = dominant
-# Probability that chromosome 2 = dominant
-
-# Probability of getting two dominants
-# Probability of getting 1 dominant and 1 heterozygote
-# Probability of getting 2 heterozygotes and at least one donating a dominant
-# Probability of getting 1 het and 1 passive, but het passes dominant allele
+import os
 
 def read_file(filename):
 	# This function reads in the file
 	# Input: a filename (string)
 	# Output: A dictionary of population information.
 	# 	key = organism type, value = number of organisms (int)
-	file = open(filename, "r")
+	dirname = os.path.dirname(os.getcwd())
+	file = open(os.path.join(dirname, "input", filename), "r")
 	file_s = file.read()
 	file_ls = file_s.split()
 	k = int(file_ls[0])

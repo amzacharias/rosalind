@@ -12,7 +12,10 @@ Return: Four integers (separated by spaces) counting the respective number of
     times that the symbols 'A', 'C', 'G', and 'T' occur in s.
 """
 
-DNA_file = open("rosalind_dna.txt","r")
+import os
+
+dirname = os.path.dirname(os.getcwd())
+DNA_file = open(os.path.join(dirname, "input", "rosalind_dna.txt"), "r")
 DNA_s = DNA_file.read()
 
 print(DNA_s)

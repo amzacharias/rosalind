@@ -26,8 +26,11 @@ master/Bioinformatics%20Stronghold/Rabbits%20and%20Recurrence%
 20Relations%20(FIB)
 """
 
+import os
+
 # Read in the file
-fib_file = open("rosalind_fib.txt","r")
+dirname = os.path.dirname(os.getcwd())
+fib_file = open(os.path.join(dirname, "input", "rosalind_fib.txt"), "r")
 fib_s = fib_file.read()
 fib_ls = fib_s.split()
 n = int(fib_ls[0])

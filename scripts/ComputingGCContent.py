@@ -14,11 +14,14 @@ decimal answers unless otherwise stated; please see the note on absolute error
 below.
 """
 
+import os
+
 def get_file(filename):
     # This function reads in the fasta file
     # Input: a filename (string)
     # Output: a dictionary (key = ID, value = sequence)
-    gc_file = open(filename)
+    dirname = os.path.dirname(os.getcwd())
+    gc_file = open(os.path.join(dirname, "input", filename), "r")
     fasta_dict = {}
     fastq_id = ""
     for line in gc_file:

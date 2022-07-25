@@ -10,8 +10,11 @@ Given: A DNA string t having length at most 1000 nt.
 Return: The transcribed RNA string of t.
 """
 
+import os
+
 # Read in the file
-DNA_file = open("rosalind_revc.txt","r")
+dirname = os.path.dirname(os.getcwd())
+DNA_file = open(os.path.join(dirname, "input", "rosalind_revc.txt"), "r")
 DNA_s = DNA_file.read()
 
 # Step 1: reverse the string

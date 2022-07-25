@@ -15,8 +15,11 @@ Hamming distance = the number of nucleotides that differ between two sequences
 of equal length. 
 """
 
+import os
+
 # Read in the file
-DNA_file = open("rosalind_hamm.txt","r")
+dirname = os.path.dirname(os.getcwd())
+DNA_file = open(os.path.join(dirname, "input", "rosalind_hamm.txt"), "r")
 DNA_s = DNA_file.read()
 DNA_ls = DNA_s.split()
 seq1 = DNA_ls[0]

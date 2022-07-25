@@ -17,12 +17,15 @@ will produce an individual possessing a dominant allele
 """
 # Import modules
 import pandas as pd
+import os
 
 def read_rosalind_file(filename):
 	# This function reads in the file
 	# Input: a filename (string)
 	# Output: A string
-	with open(filename, 'r') as file:
+	dirname = os.path.dirname(os.getcwd())
+	filepath = os.path.join(dirname, "input", filename)
+	with open(filepath, 'r') as file:
 		data = file.read().strip()
 	return data
 
@@ -32,7 +35,9 @@ def read_table(filename):
     # And formats it nicely
 	# Input: a filename (string)
 	# Output: a pandas dataframe
-	table = pd.read_table(filename,
+	dirname = os.path.dirname(os.getcwd())
+	filepath = os.path.join(dirname, "input", filename)
+	table = pd.read_table(filepath,
 						  header=None,
 						  names=["RNA", "AA"],
 						  delimiter=" ",
@@ -68,7 +73,9 @@ def main():
 	protein_seq = convert(rna_seq, codon_table)
 	print(protein_seq)
 
-	text_file = open("rosalind_prot_out.txt", "wt")
+	dirname = os.path.dirname(os.getcwd())
+	filepath = os.path.join(dirname, "output", "rosalind_prot_out.txt")
+	text_file = open(filepath, "wt")
 	n = text_file.write(protein_seq)
 	text_file.close()
 
