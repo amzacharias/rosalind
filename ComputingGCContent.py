@@ -14,54 +14,66 @@ decimal answers unless otherwise stated; please see the note on absolute error
 below.
 """
 
-# Read in the file
-fasta_dict = {}
-gc_file = open("rosalind_gc.txt")
-for line in gc_file:
-    line = line.strip()
-    if not line:
-        continue
-    if line.startswith(">"):
-        fasta_ID = line[1:]
-        if fasta_ID not in fasta_dict:
-            fasta_dict[fasta_ID] = []
-    sequence = line
-    fasta_dict[fasta_ID] = sequence
-    
-# Function will calculate GC Content
-# Input:  sequence list
-# Output: an integer
-def GC_content(sequence):
-    G_count = sequence.count("G")
-    C_count = sequence.count("C")
-    Total_count = len(sequence)
-    GC_Sum = int(G_count) + int(C_count)
-    Decimal_GC = float(GC_Sum) / Total_count
-    Percent_GC = (Decimal_GC) * 100
+def get_file(filename):
+    # This function reads in the fasta file
+    # Input: a filename (string)
+    # Output: a dictionary (key = ID, value = sequence)
+    gc_file = open(filename)
+    fasta_dict = {}
+    fastq_id = ""
+    for line in gc_file:
+        line = line.strip()  # remove whitespace
+        if not line:
+            continue
+        if line.startswith(">"):
+            fastq_id = line[1:]
+            if fastq_id not in fasta_dict:
+                fasta_dict[fastq_id] = []
+            continue  # This line is important! Ensure whole sequence is captured.
+        fasta_dict[fastq_id] += line
+    print(fasta_dict)
+    return fasta_dict
+
+
+def calc_gc_content(fasta_sequence):
+    # Calculate GC Content
+    # Input:  sequence list
+    # Output: an integer
+    G_count = fasta_sequence.count("G")
+    C_count = fasta_sequence.count("C")
+    Total_count = len(fasta_sequence)
+    GC_Sum = G_count + C_count
+    Decimal_GC = GC_Sum / Total_count
+    Percent_GC = Decimal_GC * 100
     return Percent_GC
 
-# Key: sequence ID, Value: % GC content
-GC_dict = {}
-for fasta_ID, sequence in fasta_dict.items():
-    GC_dict[fasta_ID] = float(GC_content(sequence))
-    
-# Function will find the sequence and ID with the highest GC content.
-# Input: dictionary (key = ID, value = GC content)
-# Output: returns the highest GC content
-def max_GC(GC_dict):
-    max_GC = ["fasta_ID", 0000]
-    for fasta_ID, GC_content in GC_dict.items():
-        if GC_content > max_GC[1]:
-            max_GC = [fasta_ID, GC_content]
+
+def get_max_gc(gc_dict):
+    # Function will find the sequence and id with the highest gc content.
+    # Input: dictionary (key = id, value = gc content)
+    # Output: returns the highest gc content
+    max_gc = ["fastq_id", 0000]  # instantiate empty list
+    for fastq_id, gc_content in gc_dict.items():
+        if gc_content > max_gc[1]:
+            max_gc = [fastq_id, gc_content]
         else:
-            max_GC = max_GC
-    return max_GC
+            max_gc = max_gc
+    return max_gc
 
-# Call max_GC to find the sequence with the highest GC content and its respective
-# ID.
-max_GC_pair = max_GC(GC_dict)
-print(str(max_GC_pair[0]) + " " + str(max_GC_pair[1]) + "%")
+def main():
+    # The main driver of this script
+    # Input: None
+    # Output: writes a file and prints messages to the user
+    # 1. Read in sequences
+    seq_dict = get_file("rosalind_gc.txt")
+    # 2. Calculate % GC content of each sequence
+    gc_dict = {}
+    for fastq_id, sequence in seq_dict.items():
+        gc_dict[fastq_id] = calc_gc_content(sequence)
+    # 3.Get sequence and with highest GC content and its ID
+    max_gc_pair = get_max_gc(gc_dict)
+    print("{} \n{:.6f}".format(max_gc_pair[0], max_gc_pair[1]))
 
-
-
-
+main()
+# Rosalind_3726
+# 54.057018

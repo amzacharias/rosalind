@@ -1,4 +1,4 @@
-# This program is for rosalind.info/problems/fib/
+# This program is for rosalind.info/problems/iprb/
 
 # This program will use recursion to calculate Fn of the Fibonacci sequence.
 
