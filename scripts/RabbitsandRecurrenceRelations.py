@@ -69,8 +69,8 @@ def rec_fib(n, k):
     # Base case, F1 = 0
     if n == 0:
         return 0
-    # Base case, F2 = 1
-    elif n == 1:
+    # Base case, F2 = 1 or F2 = 2
+    elif n == 1 or n == 2:
         return 1
     # Fn = Fn - 1 + Fn - 2
     else:
@@ -99,8 +99,8 @@ def mem_fib(n, k = 1):
     # We haven't computed this before
     if n == 0:
         ans = 0
-    elif n == 1:
-        ans = 1
+    elif n == 1 or n == 2:
+        return 1
     else:
         ans = mem_fib(n - 1, k) + k * mem_fib(n - 2, k)
     memo[args] = ans # Store the result
