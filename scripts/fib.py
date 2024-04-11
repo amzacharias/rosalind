@@ -2,7 +2,7 @@
 # -*-coding: utf-8 -*-
 """
 Description:
-This program is for rosalind.info/problems/iprb/
+This program is for rosalind.info/problems/fib/
 Given: Positive integers n≤40 and k≤5.
 Return: The total number of rabbit pairs that will be present after n months,
 if we begin with 1 pair and in each generation, every pair of reproduction-age

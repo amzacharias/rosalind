@@ -2,7 +2,7 @@
 # -*-coding: utf-8 -*-
 """
 Description:
-This program is for rosalind.info/problems/in2/
+This program is for rosalind.info/problems/ini2/
 This program will calculate the square of the hypotenuse of the right triangle, 
 whose legs have lengths a and b. a and b are positive integers, < 1000.
 Formula for triangle hypotensue: c = sqrt(a**2 + b**2)
