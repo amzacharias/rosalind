@@ -1,10 +1,21 @@
-# This program is for rosalind.info/problems/ini5/
+#!/usr/bin/env python
+# -*-coding: utf-8 -*-
+"""
+Description:
+This program is for rosalind.info/problems/ini5/
+Given: A file containing at most 1000 lines.
+Return: A file containing all the even-numbered lines from the original file.
+Assume 1-based numbering of lines.
+"""
+__author__ = 'Amanda Zacharias'
+__contact__ = '16amz1@queensu.ca'
+__date__ = '2024/04/11'
+__version__ = '1.0'
+__status__ = 'initiated'
+# Imports -----------------------------------------------
+import os
 
-# This program will read a file and return a new file with only even-numbered
-# lines. 
-
-# Amanda Zacharias; April 26th, 2021
-
+# Code -----------------------------------------------
 """
 Notes:
 open() to access a file
@@ -39,16 +50,7 @@ You can also use a for loop to write a list of items one at a time
 
 must use f.close() at the end!
 """
-
-"""
-Given: A file containing at most 1000 lines.
-
-Return: A file containing all the even-numbered lines from the original file.
-Assume 1-based numbering of lines.
-"""
-import os
-dirname = os.path.dirname(os.getcwd())
-f = open(os.path.join(dirname, "input", "rosalind_ini5.txt"), "r")
+f = open(os.path.join(os.getcwd(), "input", "rosalind_ini5.txt"), "r")
 
 fileList = f.readlines()
 
@@ -66,15 +68,7 @@ while i < len(fileList):
 
 f.close()
 
-evenFile = open("EvenFile_ini5.txt", "w")
+evenFile = open(os.path.join(os.getcwd(), "output", "EvenFile_ini5.txt"), "w")
 for i in evenList:
     evenFile.write(str(i))
 evenFile.close()
-
-
-
-
-
-
-
-

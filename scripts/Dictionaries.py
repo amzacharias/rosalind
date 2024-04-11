@@ -1,10 +1,19 @@
-# This program is for rosalind.info/problems/ini6/
-
-# This program will read a string and return the number of occurences of each
-# word in the string. 
-
-# Amanda Zacharias; April 29th, 2021
-
+#!/usr/bin/env python
+# -*-coding: utf-8 -*-
+"""
+Description:
+This program is for rosalind.info/problems/ini6/
+Given: A string s of length at most 10000 letters.
+Return: The number of occurrences of each word in s, where words are separated
+    by spaces. Words are case-sensitive, and the lines in the output can be in
+    any order.
+"""
+__author__ = 'Amanda Zacharias'
+__contact__ = '16amz1@queensu.ca'
+__date__ = '2024/04/11'
+__version__ = '1.0'
+__status__ = 'initiated'
+# Code -----------------------------------------------
 """
 In a dictionary there are keys:values.
     keys can be strings, numbers, floats, or other immutable types
@@ -12,12 +21,12 @@ In a dictionary there are keys:values.
 
 accessing values from a dictionary:
     phones = {'Zoe':'232-43-58', 'Alice':165-88-56}
-    print phones['Zoe']
+    print(phones['Zoe'])
 
 adding new values or assigning a new value to an existing key:
     phones['Zoe'] = '658-99-55'
-    phones['Bill'] = '342-18-25' #Bill appears at the beginning of the dictionary
-    print phones
+    phones['Bill'] = '342-18-25' # Bill appears at the end of the dictionary
+    print(phones)
 
 Ordering of dictionaries:
     case senstive ~ uppercase is before lowercase
@@ -34,16 +43,8 @@ Check whether a key is in the dictionary:
 
 # Delete a key:value pair
     phones = {'Zoe':'232-43-58', 'Alice':'165-88-56'}
-    del phones['Zoe']
-    print phones
-"""
-
-"""
-Given: A string s of length at most 10000 letters.
-
-Return: The number of occurrences of each word in s, where words are separated
-    by spaces. Words are case-sensitive, and the lines in the output can be in
-    any order.
+    del(phones['Zoe'])
+    print(phones)
 """
 
 s = "When I find myself in times of trouble Mother Mary comes to me Speaking "\
@@ -78,7 +79,3 @@ for word in s_list:
 # For every word in the dictionary print the word and its number of occurences. 
 for word in word_dict:
     print (word, word_dict[word])
-
-
-
-

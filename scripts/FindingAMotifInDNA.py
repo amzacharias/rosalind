@@ -1,10 +1,21 @@
-# This program is for /rosalind.info/problems/subs/
+#!/usr/bin/env python
+# -*-coding: utf-8 -*-
+"""
+Description:
+This program is for /rosalind.info/problems/subs/
+Given: Two DNA strings s and t (each of length at most 1 kbp).
+Return: All locations of t as a substring of s.
+"""
+__author__ = 'Amanda Zacharias'
+__contact__ = '16amz1@queensu.ca'
+__date__ = '2024/04/11'
+__version__ = '1.0'
+__status__ = 'initiated'
+# Imports -----------------------------------------------
+import os
+import pandas as pd
 
-# This program will output the starting point(s) at which a substring
-# matches another string.
-
-# Amanda Zacharias; July 26th, 2022
-
+# Code -----------------------------------------------
 """
 Given two strings s and t, t is a substring of s if t is contained as a
 contiguous collection of symbols in s (as a result, t must be no longer than s).
@@ -21,22 +32,12 @@ A substring of s can be represented as s[j:k], where j and k represent
 The location of a substring s[j:k] is its beginning position j;
 note that t will have multiple locations in s if it occurs more than
  once as a substring of s (see the Sample below).
-
-Given: Two DNA strings s and t (each of length at most 1 kbp).
-
-Return: All locations of t as a substring of s.
 """
-# Import modules
-import pandas as pd
-import os
-
-
 def read_rosalind_file(filename):
 	# This function reads in the file
 	# Input: a filename (string)
-	# Output: A string
-	dirname = os.path.dirname(os.getcwd())
-	file = open(os.path.join(dirname, "input", filename), "r")
+	# Output: A dictionary with strings s and t
+	file = open(os.path.join(os.getcwd(), "input", filename), "r")
 	file_ls = file.read().split()
 	return {"s": file_ls[0], "t": file_ls[1]}
 
@@ -51,7 +52,6 @@ def find_matches(seqs_dict):
 		if seqs_dict["s"][i:window_size + i] == seqs_dict["t"]:
 			# Add one because rosalind doesn't use 0 indexing
 			matches.append(i + 1)
-
 	return matches
 
 

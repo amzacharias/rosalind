@@ -1,37 +1,38 @@
-# This program is for /rosalind.info/problems/iprb/
-
-# This program will calculate the probability of a dominate allele
-# being produced by two random organisms.
-
-# Amanda Zacharias; July 25th, 2022
-
+#!/usr/bin/env python
+# -*-coding: utf-8 -*-
 """
+Description:
+This program is for /rosalind.info/problems/iprb/
 Given: Three positive integers k, m, and n, representing a population
 containing k+m+n organisms:
 	k individuals are homozygous dominant for a factor,
 	m are heterozygous,
 	and n are homozygous recessive.
-
 Return: The probability that two randomly selected mating organisms
 will produce an individual possessing a dominant allele
 (and thus displaying the dominant phenotype). Assume that any two organisms can mate.
 """
-
+__author__ = 'Amanda Zacharias'
+__contact__ = '16amz1@queensu.ca'
+__date__ = '2024/04/11'
+__version__ = '1.0'
+__status__ = 'initiated'
+# Imports -----------------------------------------------
 import os
 
+# Code -----------------------------------------------
 def read_file(filename):
 	# This function reads in the file
 	# Input: a filename (string)
 	# Output: A dictionary of population information.
 	# 	key = organism type, value = number of organisms (int)
-	dirname = os.path.dirname(os.getcwd())
-	file = open(os.path.join(dirname, "input", filename), "r")
+	file = open(os.path.join(os.getcwd(), "input", filename), "r")
 	file_s = file.read()
 	file_ls = file_s.split()
 	k = int(file_ls[0])
 	m = int(file_ls[1])
 	n = int(file_ls[2])
-	total = k + m + n
+	# total = k + m + n
 	return {"AA": k, "Aa": m, "aa": n}
 
 
@@ -40,20 +41,20 @@ def dominant_prob(pop_dict):
 	total = sum(pop_dict.values())
 	# Probability of parental combinations
 	# Would be more elegant to calculate probability of recessive subtracted by 1
-	AA_AA_probability = (pop_dict["AA"] / total) * ((pop_dict["AA"] - 1) / (total - 1))
-	AA_Aa_probability = (pop_dict["AA"] / total) * ((pop_dict["Aa"]) / (total - 1)) + \
+	probability_AAxAA = (pop_dict["AA"] / total) * ((pop_dict["AA"] - 1) / (total - 1))
+	probability_AAxAa = (pop_dict["AA"] / total) * ((pop_dict["Aa"]) / (total - 1)) + \
 						(pop_dict["Aa"] / total) * ((pop_dict["AA"]) / (total - 1))
-	AA_aa_probability = (pop_dict["AA"] / total) * ((pop_dict["aa"]) / (total - 1)) + \
+	probability_AAxaa = (pop_dict["AA"] / total) * ((pop_dict["aa"]) / (total - 1)) + \
 						(pop_dict["aa"] / total) * ((pop_dict["AA"]) / (total - 1))
-	Aa_Aa_probability = (pop_dict["Aa"] / total) * ((pop_dict["Aa"] - 1) / (total - 1))
-	Aa_aa_probability = (pop_dict["Aa"] / total) * ((pop_dict["aa"]) / (total - 1)) + \
+	probability_AaxAa = (pop_dict["Aa"] / total) * ((pop_dict["Aa"] - 1) / (total - 1))
+	probability_Aaxaa = (pop_dict["Aa"] / total) * ((pop_dict["aa"]) / (total - 1)) + \
 						(pop_dict["aa"] / total) * ((pop_dict["Aa"]) / (total - 1))
 	# Probability of dominant allele
-	A_allele_probability = AA_AA_probability + AA_Aa_probability + \
-						   AA_aa_probability + \
-						   (Aa_Aa_probability * 0.75) + \
-						   (Aa_aa_probability * 0.50)
-	return A_allele_probability
+	probability_A_allele = probability_AAxAA + probability_AAxAa + \
+						   probability_AAxaa + \
+						   (probability_AaxAa * 0.75) + \
+						   (probability_Aaxaa * 0.50)
+	return probability_A_allele
 
 
 def main():
@@ -66,4 +67,3 @@ def main():
 	print("{:.5f}".format(dom_prob))
 
 main()
-

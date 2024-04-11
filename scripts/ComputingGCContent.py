@@ -1,27 +1,28 @@
-# This program is for rosalind.info/problems/gc/
-
-# This program will return the ID and GC content of the DNA string with the
-# highest GC content. 
-
-# Amanda Zacharias; May 4th, 2021
-
+#!/usr/bin/env python
+# -*-coding: utf-8 -*-
 """
+Description:
+This program is for rosalind.info/problems/gc/
 Given: At most 10 DNA strings in FASTA format (of length at most 1 kbp each).
-
 Return: The ID of the string having the highest GC-content, followed by the
 GC-content of that string. Rosalind allows for a default error of 0.001 in all
 decimal answers unless otherwise stated; please see the note on absolute error
 below.
 """
-
+__author__ = 'Amanda Zacharias'
+__contact__ = '16amz1@queensu.ca'
+__date__ = '2024/04/11'
+__version__ = '1.0'
+__status__ = 'initiated'
+# Imports -----------------------------------------------
 import os
 
+# Code -----------------------------------------------
 def get_file(filename):
     # This function reads in the fasta file
     # Input: a filename (string)
     # Output: a dictionary (key = ID, value = sequence)
-    dirname = os.path.dirname(os.getcwd())
-    gc_file = open(os.path.join(dirname, "input", filename), "r")
+    gc_file = open(os.path.join(os.getcwd(), "input", filename), "r")
     fasta_dict = {}
     fastq_id = ""
     for line in gc_file:
@@ -42,13 +43,13 @@ def calc_gc_content(fasta_sequence):
     # Calculate GC Content
     # Input:  sequence list
     # Output: an integer
-    G_count = fasta_sequence.count("G")
-    C_count = fasta_sequence.count("C")
-    Total_count = len(fasta_sequence)
-    GC_Sum = G_count + C_count
-    Decimal_GC = GC_Sum / Total_count
-    Percent_GC = Decimal_GC * 100
-    return Percent_GC
+    count_G = fasta_sequence.count("G")
+    count_C = fasta_sequence.count("C")
+    count_total = len(fasta_sequence)
+    sum_GC = count_G + count_C
+    decimal_GC = sum_GC / count_total
+    percent_GC = decimal_GC * 100
+    return percent_GC
 
 
 def get_max_gc(gc_dict):

@@ -1,21 +1,22 @@
-# This program is for rosalind.info/problems/dna/
-
-# This program will return the # of occurence of each DNA nucleotide (ACGT)
-# within a string. 
-
-# Amanda Zacharias; April 29th, 2021
-
+#!/usr/bin/env python
+# -*-coding: utf-8 -*-
 """
+Description:
+This program is for rosalind.info/problems/dna/
 Given: A DNA string s of length at most 1000 nt.
-
 Return: Four integers (separated by spaces) counting the respective number of
     times that the symbols 'A', 'C', 'G', and 'T' occur in s.
 """
-
+__author__ = 'Amanda Zacharias'
+__contact__ = '16amz1@queensu.ca'
+__date__ = '2024/04/11'
+__version__ = '1.0'
+__status__ = 'initiated'
+# Imports -----------------------------------------------
 import os
 
-dirname = os.path.dirname(os.getcwd())
-DNA_file = open(os.path.join(dirname, "input", "rosalind_dna.txt"), "r")
+# Code -----------------------------------------------
+DNA_file = open(os.path.join(os.getcwd(), "input", "rosalind_dna.txt"), "r")
 DNA_s = DNA_file.read()
 
 print(DNA_s)
