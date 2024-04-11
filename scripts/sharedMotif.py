@@ -10,7 +10,7 @@ __author__ = 'Amanda Zacharias'
 __contact__ = '16amz1@queensu.ca'
 __date__ = '2024/04/11'
 __version__ = '1.0'
-__status__ = 'initiated'
+__status__ = 'finished'
 # Imports -----------------------------------------------
 import os
 
